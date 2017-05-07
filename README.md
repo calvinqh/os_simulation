@@ -17,13 +17,13 @@ Your program should simulate contiguous memory allocation with “First-Fit” a
 At the start, your program asks the user three questions:
 
 
-*How much RAM memory is there on the simulated computer? Your program receives the number in bytes (no kilobytes or words). I can enter any number up to 4000000000 (4 billions).
+* How much RAM memory is there on the simulated computer? Your program receives the number in bytes (no kilobytes or words). I can enter any number up to 4000000000 (4 billions).
 
 
-*How many hard disks the simulated computer has? Enumeration of hard disks starts with 0.
+* How many hard disks the simulated computer has? Enumeration of hard disks starts with 0.
 
 
-*How many printers the simulated computer has? Enumeration of printers starts with 0.
+* How many printers the simulated computer has? Enumeration of printers starts with 0.
  
  
 After these questions are answered, the simulation begins. You program constantly listens for the user inputs. The user inputs signal some system events. Your program simulates the corresponding system behavior. The possible inputs are:
