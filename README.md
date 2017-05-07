@@ -29,7 +29,7 @@ At the start, your program asks the user three questions:
 After these questions are answered, the simulation begins. You program constantly listens for the user inputs. The user inputs signal some system events. Your program simulates the corresponding system behavior. The possible inputs are:
  
  
-__A priority size__        ‘A’ input means that a new process has been created. This process has the priority priority and needs size bytes of RAM memory. For example, the input A 2 2000000 means that a new process has arrived. This process has the priority of 2 and needs 2000000 bytes to operate.
+1. __A priority size__        ‘A’ input means that a new process has been created. This process has the priority priority and needs size bytes of RAM memory. For example, the input A 2 2000000 means that a new process has arrived. This process has the priority of 2 and needs 2000000 bytes to operate.
 
 When a new process arrives, your program should create its PCB and allocate memory for it. If there is no memory for this process your program should print an error message and refuse to create the new process.
 
@@ -37,25 +37,25 @@ Also, when a new process is created your program should send it to the ready-que
 When choosing PID for a new process start from 1 and go up. Do NOT reuse PIDs of the terminated processes.
  
  
-__t__         The process that currently uses the CPU terminates. It leaves the system immediately. Make sure you release the memory used by this process. If the process was positioned in RAM next to a hole, make sure its RAM is merged with the hole. In other words, make sure there are no adjacent holes.
+2. __t__         The process that currently uses the CPU terminates. It leaves the system immediately. Make sure you release the memory used by this process. If the process was positioned in RAM next to a hole, make sure its RAM is merged with the hole. In other words, make sure there are no adjacent holes.
  
  
-__d number__    The process that currently uses the CPU requests the hard disk #number.
+3. __d number__    The process that currently uses the CPU requests the hard disk #number.
  
  
-__p number__    The process that currently uses the CPU requests the printer #number.
+4. __p number__    The process that currently uses the CPU requests the printer #number.
  
  
-__D number__   The hard disk #number has finished the work for one process.
+5. __D number__   The hard disk #number has finished the work for one process.
  
  
-__P number__    The printer #number has finished the work for one process.
+6. __P number__    The printer #number has finished the work for one process.
  
  
-__S r__     Shows what process is currently using the CPU and what processes are waiting to use the CPU on each level of the ready-queue. Processes on the same level of the ready-queue should be listed in the order in which they are positioned in the queue.
+7. __S r__     Shows what process is currently using the CPU and what processes are waiting to use the CPU on each level of the ready-queue. Processes on the same level of the ready-queue should be listed in the order in which they are positioned in the queue.
  
  
-__S i__      Shows what processes are currently using the I/O devices and what processes are waiting to use them. For each busy device show the process that uses it and show its I/O-queue.
+8. __S i__      Shows what processes are currently using the I/O devices and what processes are waiting to use them. For each busy device show the process that uses it and show its I/O-queue.
  
  
-__S m__    Shows the state of memory. Display the range of addresses occupied by each process in the system.
+9. __S m__    Shows the state of memory. Display the range of addresses occupied by each process in the system.
