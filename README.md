@@ -1,7 +1,7 @@
 You should write a program that simulates some aspects of operating systems. There is no real system programming involved. The whole simulation is based on text inputs that the program receives from user.
  
  
-#Scheduling
+# Scheduling
 
 Your program should use the following multilevel scheduling. There are 5 priority levels numbered from 0 to 4. 0 is the lowest priority and 4 is the highest. There are 5 levels in the ready-queue, one for each priority level. Within each level of the ready-queue the FCFS algorithm is used. A process from some level of the ready-queue can be scheduled only if all higher levels are empty. The scheduling is preemptive: When a higher priority process becomes available for execution the lower priority process should be preemptied and sent to the end of its level of the ready queue.
  
@@ -9,7 +9,7 @@ Your program should use the following multilevel scheduling. There are 5 priorit
 All I/O-queues are FCFS.
  
  
-#Memory
+# Memory
 
 Your program should simulate contiguous memory allocation with “First-Fit” approach.
  
