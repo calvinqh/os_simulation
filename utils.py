@@ -11,14 +11,14 @@ class Util:
     show_io_ready = re.compile('S i')
     show_memory = re.compile('S m')
     
-    def isValid(self, command):
+    def isValid(self, commor):
         valid = True
-        if new_process.match(command)!=None and terminate.match(command)!=None and disk_request.match(command)!=None:
+        if self.new_process.match(commor)!=None or self.terminate.match(commor)!=None or self.disk_request.match(commor)!=None:
             return valid
-        if disk_complete.match(command)!=None and print_request.match(command)!=None:
+        if self.disk_complete.match(commor)!=None or self.print_request.match(commor)!=None:
             return valid
-        if print_complete.match(command)!=None and show_ready.match(command)!=None:
+        if self.print_complete.match(commor)!=None or self.show_ready.match(commor)!=None:
             return valid
-        if show_io_ready.match(command)!=None and show_memory.match(command)!=None:
+        if self.show_io_ready.match(commor)!=None or self.show_memory.match(commor)!=None:
             return valid
         return False

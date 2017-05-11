@@ -1,9 +1,9 @@
-import Queue
+import queue
 
 class Scheduler(object):
 
     def __init__(self):
-        self.priority_map = [Queue.Queue() for i in range(5)]
+        self.priority_map = [queue.Queue() for i in range(5)]
 
     #return highest level that is ready, -1 if empty
     def peek_highest(self):
