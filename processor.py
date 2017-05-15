@@ -15,3 +15,8 @@ class CPU:
 
     def isBusy(self):
         return self.running_process != None
+
+    def check_priority(self):
+        if self.running_process != None:
+            return self.running_process.priority
+        return None
