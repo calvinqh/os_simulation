@@ -1,3 +1,5 @@
+from process import Process
+
 class MemoryManager():
 
     pid_counter = 0
@@ -12,39 +14,39 @@ class MemoryManager():
         success = False
         for i in range(len(self.memory)):
             if(self.memory[i].free):
-                if(process.size < self.memory[i].size):
+                if(process.size <= self.memory[i].size):
                     #insert at the front of the slot and reduce slot size
-                    p = UsedMemorySlot(p)
+                    p = UsedMemorySlot(process)
                     self.memory[i].size = self.memory[i].size - p.size
                     if(self.memory[i].size == 0):
                         self.memory.pop(i)
-                        self.memory = self.memory[:i] + p + self.memory[i:]
+                        self.memory = self.memory[:i-1] + [p] + self.memory[i:]
                     else:
-                        self.memory = self.memory[:i] + p + self.memory[i:]
+                        self.memory = self.memory[:i] + [p] + self.memory[i:]
                     success = True
                     break
         return success
-
-
-class Slot():
     
-    size = 0
-    free= False
+    def snapshot(self):
+        start = 0
+        counter = 0
+        for i in range(len(self.memory)):
+            print('Process {}: {} {}'.format(counter,start,start+self.memory[i].size))
+            start += self.memory[i].size
+            counter+=1
 
-    def __init__(self, s, f):
-        size = s
-        free = f
 
-class FreeMemorySlot(Slot):
+class FreeMemorySlot():
 
-    def __init__(self, size=0):
-        Slot.__init__(self,size,True)
+    def __init__(self, s):
+        self.size = s
+        self.free = True
 
-class UsedMemorySlot(Slot):
-
+class UsedMemorySlot(FreeMemorySlot):
 
     def __init__(self, p):
-        Slot.__init__(self,p.size,False)
+        FreeMemorySlot.__init__(self,p.size)
+        self.free = False
         self.process = p
 
 class PCB():
@@ -63,4 +65,3 @@ class PrinterManager():
     
     def __init__(self, size):
         self.size = size
-
