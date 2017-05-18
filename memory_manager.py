@@ -48,7 +48,7 @@ class MemoryManager():
                     self.memory = self.memory[:i] + [fs] + self.memory[i+2:]
                 break;
         print("Process has been released.")
-
+    
     def snapshot(self):
         start = 0
         counter = 0
@@ -74,12 +74,4 @@ class UsedMemorySlot(FreeMemorySlot):
         self.free = False
         self.process = p
 
-class HardDriveManager():
-    
-    def __init__(self, size):
-        self.size = size
 
-class PrinterManager():
-    
-    def __init__(self, size):
-        self.size = size
