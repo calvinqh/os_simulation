@@ -1,4 +1,6 @@
-from managers import *
+from memory_manager import *
+from disk_manager import *
+from printer_manager import *
 from process import *
 from processor import *
 from scheduler import *
@@ -86,7 +88,6 @@ while(True):
             cpu.run(p)
         else:
             print("No processes running.")
-        pass
     if(utils.disk_request.match(user_input)):
         pass
     if(utils.disk_complete.match(user_input)):
@@ -96,11 +97,11 @@ while(True):
     if(utils.print_complete.match(user_input)):
         pass
     if(utils.show_ready.match(user_input)):
-        pass
+        cpu.snapshot()
+        sched.snapshot()
     if(utils.show_io_ready.match(user_input)):
         pass
     if(utils.show_memory.match(user_input)):
         mem_manager.snapshot()
-        pass
 
 
