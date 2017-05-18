@@ -76,6 +76,16 @@ while(True):
             sched.put(p)
         
     if(utils.terminate.match(user_input)):
+        #terminate the process
+        t = cpu.terminate()
+        #free the memory space taken
+        mem_manager.release(t)
+        #put next item into cpu
+        p = sched.get()
+        if(p != None):
+            cpu.run(p)
+        else:
+            print("No processes running.")
         pass
     if(utils.disk_request.match(user_input)):
         pass
@@ -86,11 +96,11 @@ while(True):
     if(utils.print_complete.match(user_input)):
         pass
     if(utils.show_ready.match(user_input)):
-        mem_manager.snapshot()
         pass
     if(utils.show_io_ready.match(user_input)):
         pass
     if(utils.show_memory.match(user_input)):
+        mem_manager.snapshot()
         pass
 
 
