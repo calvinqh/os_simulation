@@ -32,3 +32,7 @@ class Scheduler(object):
         self.priority_map[process.priority].put(process)
 
 
+    def snapshot(self):
+        for i in range(5)[::-1]:
+            if(not self.priority_map[i].empty()):
+                print('Priority {}: '.format(i))
