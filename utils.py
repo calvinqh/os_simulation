@@ -4,8 +4,8 @@ class Util:
     new_process = re.compile('A \d+ \d+')
     terminate = re.compile('t')
     disk_request = re.compile('d \d+')
-    disk_complete = re.compile('p \d+')
-    print_request = re.compile('D \d+')
+    disk_complete = re.compile('D \d+')
+    print_request = re.compile('p \d+')
     print_complete = re.compile('P \d+')
     show_ready = re.compile('S r')
     show_io_ready = re.compile('S i')
@@ -21,4 +21,10 @@ class Util:
             return valid
         if self.show_io_ready.match(commor)!=None or self.show_memory.match(commor)!=None:
             return valid
+        return False
+
+    def inRange(self, total, d_id):
+        if(d_id < total+1):
+            #plus 1 b/c devices start id at 1
+            return True
         return False
