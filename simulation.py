@@ -89,18 +89,83 @@ while(True):
         else:
             print("No processes running.")
     if(utils.disk_request.match(user_input)):
-        pass
+        variables = re.split('\W+',user_input)
+        if(not utils.inRange(hd_manager.size,int(variables[1]))):
+            print('Disk {} does not exist.'.format(int(variables[1])))
+            continue
+        t = cpu.terminate()
+        if(t == None):
+            print('There is no process in the cpu.')
+            continue
+        hd_manager.put(int(variables[1]),t)
+        p = sched.get()
+        if( p != None):
+            print('New process running in CPU.')
+            cpu.run(p)
+        else:
+            print('CPU is now empty.')
     if(utils.disk_complete.match(user_input)):
-        pass
+        variables = re.split('\W+',user_input)
+        if(not utils.inRange(hd_manager.size,int(variables[1]))):
+            print('Disk {} does not exist.'.format(int(variables[1])))
+            continue
+        p = hd_manager.complete(int(variables[1]))
+        if(p == None):
+            print('There are no processes in hard drive {}'.format(variables[1]))
+            continue
+        if(sched.peek_highest() == -1 and not cpu.isBusy()):
+            print(p)
+            cpu.run(p)
+        elif(cpu.check_priority() < p.priority):
+            print('Preempted')
+            temp = cpu.terminate()
+            cpu.run(p)
+            sched.put(temp)
+        else:
+            print('Goes to the ready queue!')
+            sched.put(p)
     if(utils.print_request.match(user_input)):
-        pass
+        variables = re.split('\W+',user_input)
+        if(not utils.inRange(printer_manager.size,int(variables[1]))):
+            print('Printer {} does not exist.'.format(int(variables[1])))
+            continue
+        t = cpu.terminate()
+        if(t == None):
+            print('There is no process in the cpu.')
+            continue
+        printer_manager.put(int(variables[1]),t)
+        p = sched.get()
+        if( p != None):
+            print('New process running in CPU.')
+            cpu.run(p)
+        else:
+            print('CPU is now empty.')
     if(utils.print_complete.match(user_input)):
-        pass
+        variables = re.split('\W+',user_input)
+        if(not utils.inRange(printer_manager.size,int(variables[1]))):
+            print('Printer {} does not exist.'.format(int(variables[1])))
+            continue
+        p = printer_manager.complete(int(variables[1]))
+        if(p == None):
+            print('There are no processes in Printer {}'.format(variables[1]))
+            continue
+        if(sched.peek_highest() == -1 and not cpu.isBusy()):
+            print(p)
+            cpu.run(p)
+        elif(cpu.check_priority() < p.priority):
+            print('Preempted')
+            temp = cpu.terminate()
+            cpu.run(p)
+            sched.put(temp)
+        else:
+            print('Goes to the ready queue!')
+            sched.put(p)
     if(utils.show_ready.match(user_input)):
         cpu.snapshot()
         sched.snapshot()
     if(utils.show_io_ready.match(user_input)):
-        pass
+        printer_manager.snapshot()
+        hd_manager.snapshot()
     if(utils.show_memory.match(user_input)):
         mem_manager.snapshot()
 
