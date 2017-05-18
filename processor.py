@@ -20,3 +20,9 @@ class CPU:
         if self.running_process != None:
             return self.running_process.priority
         return None
+
+    def snapshot(self):
+        t = 'Empty'
+        if(self.running_process != None):
+            t = self.running_process.id
+        print('CPU: {}'.format(t))
