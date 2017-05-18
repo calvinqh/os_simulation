@@ -21,7 +21,7 @@ class MemoryManager():
                     self.memory[i].size = self.memory[i].size - p.size
                     if(self.memory[i].size == 0):
                         self.memory.pop(i)
-                        self.memory = self.memory[:i-1] + [p] + self.memory[i:]
+                        self.memory = self.memory[:i] + [p] + self.memory[i:]
                     else:
                         self.memory = self.memory[:i] + [p] + self.memory[i:]
                     success = True
@@ -54,10 +54,10 @@ class MemoryManager():
         counter = 0
         for i in range(len(self.memory)):
             if(self.memory[i].free):
-                print('Free Memory: {} {}'.format(start,start+self.memory[i].size))
+                print('Free Memory: {} {}'.format(start,start+self.memory[i].size-1))
                 start += self.memory[i].size
             else:
-                print('Process {}: {} {}'.format(self.memory[i].process.id,start,start+self.memory[i].size))
+                print('Process {}: {} {}'.format(self.memory[i].process.id,start,start+self.memory[i].size-1))
                 start += self.memory[i].size
 
 
