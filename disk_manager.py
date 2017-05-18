@@ -24,7 +24,9 @@ class HardDriveManager():
         return None
 
     def snapshot(self):
-        for i in range(self.size)[1:]:
+        for i in range(self.size+1):
+            if(i == 0):
+                continue
             print('Hard Drive {} Running: {}'.format(i, self.stringify_for_hd_r(i)))
             print('Hard Drive {} Queue: {}'.format(i, self.stringify_for_hd_q(i)))
 
