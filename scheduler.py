@@ -34,5 +34,19 @@ class Scheduler(object):
 
     def snapshot(self):
         for i in range(5)[::-1]:
-            if(not self.priority_map[i].empty()):
-                print('Priority {}: '.format(i))
+            t = self.stringify_for_p(i)
+            print('Priority {}: {} '.format(i, t))
+
+    def stringify_for_p(self, p):
+        temp = []
+        result = ''
+        while(not self.priority_map[p].empty()):
+            x = self.priority_map[p].get()
+            if(x is None):
+                break
+            temp.append(x)
+            result = result + '  ' + str(x.id)
+        for i in range(len(temp)):
+            self.priority_map[p].put(temp[i])
+        return result
+
